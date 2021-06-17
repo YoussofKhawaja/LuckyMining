@@ -35,11 +35,9 @@
             <Setter Property="HasDropShadow" Value="True" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
-
         </Style>
     </Window.Resources>
     <Grid Background="#212121">
-
         <Grid
             Grid.Row="0"
             Height="60"
@@ -47,6 +45,28 @@
             Background="#181818"
             MouseLeftButtonDown="Grid_MouseLeftButtonDown"
             MouseMove="Window_MouseMove">
+            <StackPanel
+                Margin="100,0,0,0"
+                HorizontalAlignment="Left"
+                Orientation="Horizontal">
+                <Label
+                    Content="LuckyMining"
+                    FontSize="30"
+                    Foreground="White" />
+                <Grid>
+                    <materialDesign:PackIcon
+                        Width="45"
+                        Height="45"
+                        Foreground="White"
+                        Kind="Github" />
+                    <Button
+                        Width="45"
+                        Height="45"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Click="Button_Click" />
+                </Grid>
+            </StackPanel>
             <DockPanel HorizontalAlignment="Right">
                 <!--  Minimize  -->
                 <Button

@@ -246,6 +246,13 @@ namespace LuckyMining
             public UInt32 dwTime;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var url = "https://github.com/YoussofKhawaja/LuckyMining";
+
+            Process newProcess = Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+        }
+
         private void data(object sender, ElapsedEventArgs e)
         {
             this.Dispatcher.Invoke(() =>
