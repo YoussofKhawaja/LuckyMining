@@ -33,9 +33,11 @@ CLIENT SECRET
 
   . Workers Online / Offline
   
-  . Much More!
-  
   . Profit Per hour, week, month
+  
+  . Valid Shares
+  
+   . Much More!
 
 
 
