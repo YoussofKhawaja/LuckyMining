@@ -1,0 +1,139 @@
+﻿<Window
+    x:Class="LuckyMining.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LuckyMining"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="1300"
+    Height="955"
+    MinWidth="300"
+    MinHeight="300"
+    MaxHeight="{x:Static SystemParameters.MaximizedPrimaryScreenHeight}"
+    AllowsTransparency="True"
+    Background="#181818"
+    ResizeMode="CanResizeWithGrip"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <Style x:Key="Name_style" TargetType="ToolTip">
+
+            <Setter Property="Placement" Value="Right" />
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="PlacementRectangle" Value="60,0,0,0" />
+            <Setter Property="HorizontalOffset" Value="15" />
+            <Setter Property="VerticalOffset" Value="5" />
+            <Setter Property="HasDropShadow" Value="True" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+
+        </Style>
+    </Window.Resources>
+    <Grid Background="#212121">
+
+        <Grid
+            Grid.Row="0"
+            Height="60"
+            VerticalAlignment="Top"
+            Background="#181818"
+            MouseLeftButtonDown="Grid_MouseLeftButtonDown"
+            MouseMove="Window_MouseMove">
+            <DockPanel HorizontalAlignment="Right">
+                <!--  Minimize  -->
+                <Button
+                    VerticalAlignment="Center"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Click="Button_Click_3">
+                    <materialDesign:PackIcon Foreground="White" Kind="WindowMinimize" />
+                </Button>
+                <!--  Maximize  -->
+                <Button
+                    VerticalAlignment="Center"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Click="Button_Click_4">
+                    <materialDesign:PackIcon Foreground="White" Kind="WindowMaximize" />
+                </Button>
+                <!--  Exit  -->
+                <Button
+                    VerticalAlignment="Center"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Click="Button_Click_2">
+                    <materialDesign:PackIcon Foreground="White" Kind="Close" />
+                </Button>
+            </DockPanel>
+        </Grid>
+        <Grid
+            Grid.Row="0"
+            Width="80"
+            HorizontalAlignment="Left"
+            Background="#181818">
+            <StackPanel>
+                <StackPanel Margin="10">
+                    <Ellipse Width="50" Height="50">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="avatar" />
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </StackPanel>
+                <StackPanel>
+                    <Border
+                        Height="1"
+                        Margin="5"
+                        Background="White" />
+                    <ListView
+                        x:Name="ListViewMenu"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        SelectedIndex="0"
+                        SelectionChanged="ListViewMenu_SelectionChanged"
+                        SelectionMode="Single">
+                        <ListViewItem>
+                            <StackPanel>
+                                <materialDesign:PackIcon
+                                    Width="50"
+                                    Height="50"
+                                    Margin="4,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Kind="Home" />
+                            </StackPanel>
+                            <ListViewItem.ToolTip>
+                                <ToolTip Content="Home" Style="{StaticResource Name_style}" />
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+                        <ListViewItem>
+                            <StackPanel>
+                                <materialDesign:PackIcon
+                                    Width="50"
+                                    Height="50"
+                                    Margin="4,0,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="White"
+                                    Kind="Settings" />
+                            </StackPanel>
+                            <ListViewItem.ToolTip>
+                                <ToolTip Content="Settings" Style="{StaticResource Name_style}" />
+                            </ListViewItem.ToolTip>
+                        </ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="grid" Margin="80,60,0,0" />
+    </Grid>
+</Window>

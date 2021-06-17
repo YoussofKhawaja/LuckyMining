@@ -1,0 +1,276 @@
+﻿<UserControl
+    x:Class="LuckyMining.Views.MinerLauncher"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:LuckyMining"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:notifications="clr-namespace:Notifications.Wpf.Core.Controls;assembly=Notifications.Wpf.Core"
+    xmlns:test="clr-namespace:LuckyMining.Models"
+    mc:Ignorable="d">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <notifications:NotificationArea
+            x:Name="WindowArea"
+            MaxItems="1"
+            Position="TopLeft" />
+        <Grid
+            Grid.Row="0"
+            Margin="0,10,0,30"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <Button
+                x:Name="onoffbutton"
+                Width="400"
+                Height="400"
+                Click="onoffbutton_Click"
+                FontSize="30"
+                Style="{StaticResource MaterialDesignRaisedButton}">
+                <Button.Template>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Ellipse Fill="#333333" />
+                            <ContentPresenter
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding Content}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+                <StackPanel>
+                    <materialDesign:PackIcon
+                        x:Name="icon"
+                        Width="100"
+                        Height="100"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Foreground="White"
+                        Kind="Play" />
+                    <TextBlock
+                        x:Name="onoff"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Stretch"
+                        FontSize="15"
+                        Foreground="gold"
+                        Text="" />
+                    <TextBlock
+                        x:Name="uptime"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Stretch"
+                        FontSize="15"
+                        Foreground="gold"
+                        Text="" />
+                </StackPanel>
+            </Button>
+        </Grid>
+        <StackPanel
+            x:Name="addressstackpanel"
+            Margin="10"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal"
+            Visibility="Visible">
+            <Label
+                Content="Mining address:"
+                FontSize="20"
+                Foreground="White" />
+            <TextBox
+                x:Name="textboxaddress"
+                materialDesign:HintAssist.Hint=" Enter Mining address"
+                FontSize="20"
+                Foreground="Gold" />
+            <Grid>
+                <materialDesign:PackIcon
+                    Width="45"
+                    Height="45"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Foreground="White"
+                    Kind="Check" />
+                <Button
+                    x:Name="buttonadrdress"
+                    Width="45"
+                    Height="45"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Click="Button_Click" />
+            </Grid>
+
+        </StackPanel>
+        <Grid
+            Grid.Row="1"
+            Margin="10"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <Rectangle
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Fill="#aaaaaa"
+                RadiusX="13"
+                RadiusY="13" />
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <StackPanel Margin="10">
+                    <Label
+                        VerticalAlignment="Center"
+                        Content="ValidShares"
+                        FontSize="40"
+                        Foreground="White" />
+                    <Label
+                        x:Name="Share"
+                        VerticalAlignment="Bottom"
+                        HorizontalContentAlignment="Center"
+                        Content="Loading"
+                        FontSize="30"
+                        Foreground="Gold" />
+                </StackPanel>
+                <StackPanel Margin="10">
+                    <Label
+                        VerticalAlignment="Center"
+                        Content="HashRates"
+                        FontSize="40"
+                        Foreground="White" />
+                    <Label
+                        x:Name="Hashrates"
+                        VerticalAlignment="Bottom"
+                        HorizontalContentAlignment="Center"
+                        Content="Loading"
+                        FontSize="30"
+                        Foreground="Gold" />
+                </StackPanel>
+                <StackPanel Margin="10">
+                    <Label
+                        Content="WorkersCount"
+                        FontSize="40"
+                        Foreground="White" />
+                    <Label
+                        x:Name="Workers"
+                        HorizontalContentAlignment="Center"
+                        Content="Loading"
+                        FontSize="30"
+                        Foreground="Gold" />
+                </StackPanel>
+                <StackPanel Margin="10">
+                    <Label
+                        Content="UnpaidBalance"
+                        FontSize="40"
+                        Foreground="White" />
+                    <Label
+                        x:Name="UnpaidBalance"
+                        HorizontalContentAlignment="Center"
+                        Content="Loading"
+                        FontSize="30"
+                        Foreground="Gold" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid
+            Grid.Row="2"
+            Margin="10"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <Rectangle
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Fill="#aaaaaa"
+                RadiusX="13"
+                RadiusY="13" />
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <StackPanel
+                    Margin="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch">
+                    <Label
+                        Content="GPU Name"
+                        FontSize="40"
+                        Foreground="White" />
+                    <Label
+                        x:Name="gpuname"
+                        Content="Loading"
+                        FontSize="30"
+                        Foreground="Gold" />
+                    <Label
+                        VerticalAlignment="Center"
+                        Content="GPU Load"
+                        FontSize="40"
+                        Foreground="White" />
+                    <Label
+                        x:Name="gpuload"
+                        VerticalAlignment="Bottom"
+                        Content="Loading"
+                        FontSize="30"
+                        Foreground="Gold" />
+                </StackPanel>
+                <StackPanel
+                    Margin="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch">
+                    <Label
+                        Content="Temperature"
+                        FontSize="40"
+                        Foreground="White" />
+                    <Label
+                        x:Name="temp"
+                        Content="Loading"
+                        FontSize="30"
+                        Foreground="Gold" />
+                    <Label
+                        VerticalAlignment="Center"
+                        Content="Fans Speed"
+                        FontSize="40"
+                        Foreground="White" />
+                    <Label
+                        x:Name="fan"
+                        VerticalAlignment="Bottom"
+                        Content="Loading"
+                        FontSize="30"
+                        Foreground="Gold" />
+
+                </StackPanel>
+                <StackPanel
+                    Margin="20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch">
+                    <Label
+                        Content="current profitability"
+                        FontSize="40"
+                        Foreground="White" />
+                    <Label
+                        x:Name="per24"
+                        Content="Loading PerHour"
+                        FontSize="30"
+                        Foreground="Gold" />
+                    <Label
+                        x:Name="perweek"
+                        Content="Loading PerWeek"
+                        FontSize="30"
+                        Foreground="Gold" />
+                    <Label
+                        x:Name="permonth"
+                        Content="Loading PerMonth"
+                        FontSize="30"
+                        Foreground="Gold" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Grid
+            Grid.Row="3"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+            <Label
+                x:Name="workername"
+                FontSize="15"
+                Foreground="White" />
+        </Grid>
+    </Grid>
+</UserControl>

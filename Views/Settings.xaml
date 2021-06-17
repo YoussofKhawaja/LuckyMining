@@ -1,0 +1,166 @@
+﻿<UserControl
+    x:Class="LuckyMining.Views.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:LuckyMining.Views"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:notifications="clr-namespace:Notifications.Wpf.Core.Controls;assembly=Notifications.Wpf.Core"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel>
+            <notifications:NotificationArea
+                x:Name="WindowArea"
+                MaxItems="1"
+                Position="TopLeft" />
+            <StackPanel HorizontalAlignment="Center">
+                <Label
+                    x:Name="welcomeuser"
+                    Content=""
+                    FontSize="30"
+                    Foreground="White" />
+            </StackPanel>
+            <StackPanel Margin="10">
+                <Label
+                    Content="Account Information"
+                    FontSize="30"
+                    Foreground="White" />
+            </StackPanel>
+            <Grid Margin="5">
+                <Rectangle
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Fill="DarkGray"
+                    RadiusX="13"
+                    RadiusY="13" />
+                <StackPanel Margin="5">
+                    <Label
+                        Content="Email"
+                        FontSize="30"
+                        Foreground="White" />
+                    <StackPanel Orientation="Horizontal">
+                        <Label
+                            x:Name="email"
+                            Content="testforme@gmail.com"
+                            FontSize="30"
+                            Foreground="Gold" />
+                        <materialDesign:PackIcon
+                            Margin="10"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Kind="Edit" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0">
+                        <Label
+                            Content="Username"
+                            FontSize="30"
+                            Foreground="White" />
+                        <StackPanel Orientation="Horizontal">
+                            <Label
+                                x:Name="username"
+                                Content=""
+                                FontSize="30"
+                                Foreground="Gold" />
+                            <materialDesign:PackIcon
+                                Margin="10"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Kind="Edit" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <StackPanel Margin="10">
+                <Label
+                    Content="Security"
+                    FontSize="30"
+                    Foreground="White" />
+            </StackPanel>
+            <Grid Margin="5">
+                <Rectangle
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Fill="DarkGray"
+                    RadiusX="13"
+                    RadiusY="13" />
+                <StackPanel Margin="5">
+                    <Label
+                        Content="Password"
+                        FontSize="30"
+                        Foreground="White" />
+                    <Grid>
+                        <Button
+                            x:Name="chnagepassword"
+                            Background="#181818"
+                            BorderBrush="Transparent"
+                            Click="Button_Click"
+                            Content="Change Password"
+                            Foreground="White"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}" />
+                        <materialDesign:PackIcon
+                            x:Name="arrow"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Foreground="White"
+                            Kind="ArrowDropUp" />
+                    </Grid>
+                    <StackPanel>
+                        <PasswordBox
+                            x:Name="oldpassword"
+                            materialDesign:HintAssist.Hint="Old Password"
+                            BorderBrush="White"
+                            FontSize="20"
+                            Foreground="White"
+                            Visibility="Collapsed" />
+                        <PasswordBox
+                            x:Name="newpassword"
+                            materialDesign:HintAssist.Hint="New Password"
+                            BorderBrush="White"
+                            FontSize="20"
+                            Foreground="White"
+                            Visibility="Collapsed" />
+                        <PasswordBox
+                            x:Name="confirmpassword"
+                            materialDesign:HintAssist.Hint="Confirm New Password"
+                            BorderBrush="White"
+                            FontSize="20"
+                            Foreground="White"
+                            Visibility="Collapsed" />
+                        <Label
+                            x:Name="forgetpassword"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Content="Forget Password?"
+                            FontSize="7.5"
+                            Visibility="Collapsed" />
+                        <Button
+                            x:Name="submitbutton"
+                            Background="#181818"
+                            BorderBrush="Transparent"
+                            Click="submitbutton_Click"
+                            Content="Submit"
+                            Foreground="White"
+                            Style="{StaticResource MaterialDesignFlatMidBgButton}"
+                            Visibility="Collapsed" />
+                        <Label
+                            Content="LogOut"
+                            FontSize="30"
+                            Foreground="White" />
+                        <StackPanel>
+                            <Button
+                                Background="#181818"
+                                BorderBrush="Transparent"
+                                Click="btcLogOut_Click"
+                                Content="LogOut"
+                                Foreground="White"
+                                Style="{StaticResource MaterialDesignFlatMidBgButton}" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>
