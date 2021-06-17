@@ -4,6 +4,7 @@ LuckyMining is GUI for lolminer.
 
 - Made with .NetCore 5.0 and WPF 
 - Its Not done yet! 
+- Do Not Forget To star it!
 
 ## SetUp
 
