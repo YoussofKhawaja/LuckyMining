@@ -46,7 +46,7 @@
             MouseLeftButtonDown="Grid_MouseLeftButtonDown"
             MouseMove="Window_MouseMove">
             <StackPanel
-                Margin="100,0,0,0"
+                Margin="5"
                 HorizontalAlignment="Left"
                 Orientation="Horizontal">
                 <Label
@@ -94,66 +94,6 @@
                 </Button>
             </DockPanel>
         </Grid>
-        <Grid
-            Grid.Row="0"
-            Width="80"
-            HorizontalAlignment="Left"
-            Background="#181818">
-            <StackPanel>
-                <StackPanel Margin="10">
-                    <Ellipse Width="50" Height="50">
-                        <Ellipse.Fill>
-                            <ImageBrush x:Name="avatar" />
-                        </Ellipse.Fill>
-                    </Ellipse>
-                </StackPanel>
-                <StackPanel>
-                    <Border
-                        Height="1"
-                        Margin="5"
-                        Background="White" />
-                    <ListView
-                        x:Name="ListViewMenu"
-                        Background="Transparent"
-                        BorderBrush="Transparent"
-                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                        SelectedIndex="0"
-                        SelectionChanged="ListViewMenu_SelectionChanged"
-                        SelectionMode="Single">
-                        <ListViewItem>
-                            <StackPanel>
-                                <materialDesign:PackIcon
-                                    Width="50"
-                                    Height="50"
-                                    Margin="4,0,0,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Foreground="White"
-                                    Kind="Home" />
-                            </StackPanel>
-                            <ListViewItem.ToolTip>
-                                <ToolTip Content="Home" Style="{StaticResource Name_style}" />
-                            </ListViewItem.ToolTip>
-                        </ListViewItem>
-                        <ListViewItem>
-                            <StackPanel>
-                                <materialDesign:PackIcon
-                                    Width="50"
-                                    Height="50"
-                                    Margin="4,0,0,0"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    Foreground="White"
-                                    Kind="Settings" />
-                            </StackPanel>
-                            <ListViewItem.ToolTip>
-                                <ToolTip Content="Settings" Style="{StaticResource Name_style}" />
-                            </ListViewItem.ToolTip>
-                        </ListViewItem>
-                    </ListView>
-                </StackPanel>
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="grid" Margin="80,60,0,0" />
+        <Grid x:Name="grid" Margin="0,60,0,0" />
     </Grid>
 </Window>

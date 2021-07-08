@@ -56,7 +56,6 @@ namespace LuckyMining
             mainwindow = this;
             grid.Children.Clear();
             grid.Children.Add(new MinerLauncher());
-            grid.Children.Add(new Settings());
 
             foreach (UIElement uie in grid.Children)
             {
@@ -89,34 +88,12 @@ namespace LuckyMining
             if (grid == null)
                 return;
 
-            int index = ListViewMenu.SelectedIndex;
-
-            switch (index)
+            foreach (UIElement uie in grid.Children)
             {
-                //first page MinerLauncher
-
-                case 0:
-                    foreach (UIElement uie in grid.Children)
-                    {
-                        uie.Visibility = Visibility.Hidden;
-                    }
-
-                    grid.Children[0].Visibility = Visibility.Visible;
-                    break;
-                //second page Rewards
-
-                case 1:
-                    foreach (UIElement uie in grid.Children)
-                    {
-                        uie.Visibility = Visibility.Hidden;
-                    }
-
-                    grid.Children[1].Visibility = Visibility.Visible;
-                    break;
-
-                default:
-                    break;
+                uie.Visibility = Visibility.Hidden;
             }
+
+            grid.Children[0].Visibility = Visibility.Visible;
         }
 
         //exit app
@@ -190,7 +167,6 @@ namespace LuckyMining
             user = SaveManager.ReadFromXmlFile<Users>("data", "account");
             Uri uri = new Uri($"https://cdn.discordapp.com/avatars/{user.id}/{user.avatar}.png", UriKind.Absolute);
             ImageSource imgSource = new BitmapImage(uri);
-            avatar.ImageSource = imgSource;
             //Create a Discord client
 
             client = new DiscordRpcClient("//Your Client id");
@@ -259,111 +235,69 @@ namespace LuckyMining
             {
                 GetLastInputTime();
 
-                if (ListViewMenu.SelectedIndex == 0)
+                if (Process.GetProcesses().Count(p => p.ProcessName == "lolMiner") == 0 && idleTime / 1000 > 60)
                 {
-                    if (Process.GetProcesses().Count(p => p.ProcessName == "lolMiner") == 0 && idleTime / 1000 > 60)
+                    //Invoke all the events, such as OnPresenceUpdate
+                    MainWindow.client.Invoke();
+                    MainWindow.client.SetPresence(new RichPresence()
                     {
-                        //Invoke all the events, such as OnPresenceUpdate
-                        MainWindow.client.Invoke();
-                        MainWindow.client.SetPresence(new RichPresence()
+                        Details = "In MinerLauncher",
+                        State = "Idle Not Mining",
+                        Assets = new Assets()
                         {
-                            Details = "In MinerLauncher",
-                            State = "Idle Not Mining",
-                            Assets = new Assets()
-                            {
-                                LargeImageKey = "lm",
-                                LargeImageText = "LuckyMining",
-                                SmallImageKey = "moon",
-                                SmallImageText = "Idle"
-                            }
-                        });
-                    }
-                    else if (Process.GetProcesses().Count(p => p.ProcessName == "lolMiner") == 1 && idleTime / 1000 > 60)
-                    {
-                        //Invoke all the events, such as OnPresenceUpdate
-                        MainWindow.client.Invoke();
-                        MainWindow.client.SetPresence(new RichPresence()
-                        {
-                            Details = "In MinerLauncher",
-                            State = "Idle Mining Ethereum",
-                            Assets = new Assets()
-                            {
-                                LargeImageKey = "mining",
-                                LargeImageText = "LuckyMining",
-                                SmallImageKey = "moon",
-                                SmallImageText = "Idle"
-                            }
-                        });
-                    }
-                    else if (Process.GetProcesses().Count(p => p.ProcessName == "lolMiner") == 0)
-                    {
-                        //Invoke all the events, such as OnPresenceUpdate
-                        MainWindow.client.Invoke();
-                        MainWindow.client.SetPresence(new RichPresence()
-                        {
-                            Details = "In MinerLauncher",
-                            State = "Not Mining",
-                            Assets = new Assets()
-                            {
-                                LargeImageKey = "lm",
-                                LargeImageText = "LuckyMining"
-                            }
-                        });
-                    }
-                    else if (Process.GetProcesses().Count(p => p.ProcessName == "lolMiner") == 1)
-                    {
-                        //Invoke all the events, such as OnPresenceUpdate
-                        MainWindow.client.Invoke();
-                        MainWindow.client.SetPresence(new RichPresence()
-                        {
-                            Details = "In MinerLauncher",
-                            State = "Mining Ethereum",
-                            Assets = new Assets()
-                            {
-                                LargeImageKey = "mining",
-                                LargeImageText = "LuckyMining"
-                            }
-                        });
-                    }
+                            LargeImageKey = "lm",
+                            LargeImageText = "LuckyMining",
+                            SmallImageKey = "moon",
+                            SmallImageText = "Idle"
+                        }
+                    });
                 }
-
-                //second page
-                else
+                else if (Process.GetProcesses().Count(p => p.ProcessName == "lolMiner") == 1 && idleTime / 1000 > 60)
                 {
-                    if (ListViewMenu.SelectedIndex == 1 && idleTime / 1000 > 60)
+                    //Invoke all the events, such as OnPresenceUpdate
+                    MainWindow.client.Invoke();
+                    MainWindow.client.SetPresence(new RichPresence()
                     {
-                        Debug.WriteLine("2" + " " + idleTime / 1000);
-                        //Invoke all the events, such as OnPresenceUpdate
-                        MainWindow.client.Invoke();
-                        MainWindow.client.SetPresence(new RichPresence()
+                        Details = "In MinerLauncher",
+                        State = "Idle Mining Ethereum",
+                        Assets = new Assets()
                         {
-                            Details = "In Settings",
-                            State = "Idle",
-                            Assets = new Assets()
-                            {
-                                LargeImageKey = "settings",
-                                LargeImageText = "LuckyMining",
-                                SmallImageKey = "moon",
-                                SmallImageText = "Idle"
-                            }
-                        });
-                    }
-                    else if (ListViewMenu.SelectedIndex == 1)
+                            LargeImageKey = "mining",
+                            LargeImageText = "LuckyMining",
+                            SmallImageKey = "moon",
+                            SmallImageText = "Idle"
+                        }
+                    });
+                }
+                else if (Process.GetProcesses().Count(p => p.ProcessName == "lolMiner") == 0)
+                {
+                    //Invoke all the events, such as OnPresenceUpdate
+                    MainWindow.client.Invoke();
+                    MainWindow.client.SetPresence(new RichPresence()
                     {
-                        Debug.WriteLine("1" + " " + idleTime / 1000);
-                        //Invoke all the events, such as OnPresenceUpdate
-                        MainWindow.client.Invoke();
-                        MainWindow.client.SetPresence(new RichPresence()
+                        Details = "In MinerLauncher",
+                        State = "Not Mining",
+                        Assets = new Assets()
                         {
-                            Details = "In Settings",
-                            State = "Doing stuff",
-                            Assets = new Assets()
-                            {
-                                LargeImageKey = "settings",
-                                LargeImageText = "LuckyMining"
-                            }
-                        });
-                    }
+                            LargeImageKey = "lm",
+                            LargeImageText = "LuckyMining"
+                        }
+                    });
+                }
+                else if (Process.GetProcesses().Count(p => p.ProcessName == "lolMiner") == 1)
+                {
+                    //Invoke all the events, such as OnPresenceUpdate
+                    MainWindow.client.Invoke();
+                    MainWindow.client.SetPresence(new RichPresence()
+                    {
+                        Details = "In MinerLauncher",
+                        State = "Mining Ethereum",
+                        Assets = new Assets()
+                        {
+                            LargeImageKey = "mining",
+                            LargeImageText = "LuckyMining"
+                        }
+                    });
                 }
             });
         }

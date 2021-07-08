@@ -21,14 +21,10 @@
 using LibreHardwareMonitor.Hardware;
 using LuckyMining.Models;
 using LuckyMining.RestClient;
-using LuckyMining.Saving;
-using LuckyMining.Views;
 using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 
 namespace LuckyMining
@@ -38,7 +34,6 @@ namespace LuckyMining
     /// </summary>
     public partial class App : Application
     {
-        public static Users user;
         public static CryptoEco.Root eth;
         public static string fanlive2;
         public static string templive2;
@@ -63,29 +58,9 @@ namespace LuckyMining
         {
             try
             {
-                //here where we get saved data
-                user = SaveManager.ReadFromXmlFile<Users>("data", "account");
-                //if user is null
-                if (user == null)
-                {
-                    Debug.WriteLine("does not exist");
-                    Accounts accounts = new Accounts();
-                    accounts.Show();
-                }
-                //username not found
-                else if (user.username == null)
-                {
-                    Debug.WriteLine("username not found");
-                    Accounts accounts = new Accounts();
-                    accounts.Show();
-                }
-                //if user not null
-                if (user != null && user.username != null)
-                {
-                    Debug.WriteLine("username=" + user.username);
-                    MainWindow mainwindow = new MainWindow();
-                    mainwindow.Show();
-                }
+                MainWindow mainwindow = new MainWindow();
+                mainwindow.Show();
+
                 //get gpu details
                 await Task.Run(gpu);
                 await Task.Run(minerapi);
@@ -163,9 +138,6 @@ namespace LuckyMining
             {
                 while (true)
                 {
-                    //here where we get saved data
-                    user = SaveManager.ReadFromXmlFile<Users>("data", "account");
-
                     //workers
                     RestClient<Workers.Root> workersonline = new RestClient<Workers.Root>();
                     workerscount = await workersonline.GetAsync("https://api.flexpool.io/v2/miner/workerCount?coin=ETH&address=0x0473E7Ade3C7cc6371aFBa073f0E918134F20205");
@@ -191,7 +163,7 @@ namespace LuckyMining
 
                     //Shares Info
                     RestClient<SharesInfo.Root> sharesinfo = new RestClient<SharesInfo.Root>();
-                    sharessinfo = await sharesinfo.GetAsync("https://api.flexpool.io/v2/miner/workers?coin=ETH&address=0x0473E7Ade3C7cc6371aFBa073f0E918134F20205&worker=" + $"{user.username}");
+                    sharessinfo = await sharesinfo.GetAsync("https://api.flexpool.io/v2/miner/workers?coin=ETH&address=0x0473E7Ade3C7cc6371aFBa073f0E918134F20205&worker=" + $"Guest");
 
                     Debug.WriteLine("App.xaml.cs SharesInfo");
 

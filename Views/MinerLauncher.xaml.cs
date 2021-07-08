@@ -18,19 +18,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using DiscordRPC;
-using DiscordRPC.Logging;
 using LuckyMining.Models;
 using LuckyMining.RestClient;
 using LuckyMining.Saving;
 using Notifications.Wpf.Core;
 using Notifications.Wpf.Core.Controls;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
@@ -245,21 +241,6 @@ namespace LuckyMining.Views
                 foreach (ManagementObject obj in myVideoObject.Get())
                 {
                     gpuname.Content = (obj["Name"]);
-                }
-
-                //load from savemanager workername
-                user = SaveManager.ReadFromXmlFile<Users>("data", "account");
-                if (Accounts.emailuser == null)
-                {
-                    workername.Content = "Worker Name:" + " " + user.username;
-                }
-                else if (user.username == null)
-                {
-                    workername.Content = "Worker Name:" + " " + Accounts.user.username;
-                }
-                else
-                {
-                    workername.Content = "Worker Name:" + " " + Accounts.emailuser.Username;
                 }
 
                 //check if Process lolMiner is 0 so it say startmining
