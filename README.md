@@ -22,9 +22,9 @@ CLIENT ID
 CLIENT SECRET
 ```
 
-## Video
+## Images
 
-https://youtu.be/neSljp81WY0
+![Image](/LuckyMining.jpg?raw=true "LuckyMining")
 
 ## Usage
 
