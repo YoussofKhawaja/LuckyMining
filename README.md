@@ -22,7 +22,9 @@ CLIENT ID
 CLIENT SECRET
 ```
 
-## Gif
+## Video
+
+https://youtu.be/neSljp81WY0
 
 ## Usage
 
