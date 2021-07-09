@@ -10,7 +10,7 @@ LuckyMining is GUI for lolminer.
 
 - have Last [.NetCore 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
 
-- have pool address, you can get one from [https://www.flexpool.io/](FlexPool)
+- have pool address, you can get one from [FlexPool](https://www.flexpool.io/)
 
 
 ## Images
