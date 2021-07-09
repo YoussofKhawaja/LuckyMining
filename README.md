@@ -12,24 +12,12 @@ LuckyMining is GUI for lolminer.
 
 - have pool address, you can get one from [https://www.flexpool.io/](FlexPool)
 
-To get Discord stuff [DiscordDev](https://discord.com/developers/applications)
-```
-For Rich presence:
-CLIENT ID 
-
-For Discord OAuth2:
-CLIENT ID 
-CLIENT SECRET
-```
 
 ## Images
 
 ![Image](/LuckyMining.jpg?raw=true "LuckyMining")
 
 ## Usage
-
-- have Discord OAuth2
-- Have rich presence for discord
 
 - LuckyMining use lolminer as mining system 
 - LuckyMining is GUI for lolminer 
